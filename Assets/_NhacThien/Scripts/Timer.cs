@@ -12,8 +12,29 @@ public class Timer : MonoBehaviour
         timerIsRunning = false;
     }
 
+    public void SetTimer(float timeToDisplay)
+    {
+        /////////////////////////////////////////////////////////////////////////
+        AudioManager.Instance.musicSource.Play();
+        timeText.gameObject.SetActive(true);
+        timerIsRunning = true;
+        timeRemaining = timeToDisplay;
+
+        DisplayTime(timeToDisplay);
+    }
+
+    void DisplayTime(float timeToDisplay)
+    {
+        timeToDisplay += 1;
+        float hours = Mathf.FloorToInt(timeToDisplay / 60 / 60);
+        float minutes = Mathf.FloorToInt((timeToDisplay - hours * 60 * 60) / 60);
+        float seconds = Mathf.FloorToInt((timeToDisplay - hours * 60 * 60) % 60);
+        timeText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
+    }
+
     public void Stop()
     {
+        /////////////////////////////////////////////////////////////////////////
         AudioManager.Instance.musicSource.Stop();
         timeText.gameObject.SetActive(false);
         timeRemaining = 0;
@@ -27,7 +48,7 @@ public class Timer : MonoBehaviour
             if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
-                DisplayTime(timeRemaining);
+                DisplayTime(timeRemaining); /////////////////////////////////////////////////////////////////////////
             }
             else
             {
@@ -37,24 +58,5 @@ public class Timer : MonoBehaviour
                 timerIsRunning = false;
             }
         }
-    }
-
-    public void SetTimer(float timeToDisplay)
-    {
-        AudioManager.Instance.musicSource.Play();
-        timeText.gameObject.SetActive(true);
-        timerIsRunning = true;
-        timeRemaining = timeToDisplay;
-
-        DisplayTime(timeToDisplay);
-    }
-
-    void DisplayTime(float timeToDisplay)
-    {
-        timeToDisplay += 1;
-        float hours = Mathf.FloorToInt(timeToDisplay / 60 / 60);
-        float minutes = Mathf.FloorToInt((timeToDisplay - hours * 60 * 60)  / 60);
-        float seconds = Mathf.FloorToInt((timeToDisplay - hours * 60 * 60) % 60);
-        timeText.text = string.Format("{0:00}:{1:00}:{2:00}",hours, minutes, seconds);
     }
 }

@@ -10,11 +10,6 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
     /*----Data variable-------------------------------------------------------------------------------------------------*/
     [HideInInspector] public PlayerData playerData;
 
-    private void Start()
-    {
-        Application.targetFrameRate = Mathf.Max(60, Screen.currentResolution.refreshRate);
-    }
-
     private void OnEnable()
     {
         playerData = new GameObject(Constant.DataKey_PlayerData).AddComponent<PlayerData>();
@@ -26,4 +21,11 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
     {
         playerData.ResetData();
     }
+    
+    private void Start()
+    {
+        Application.targetFrameRate = Mathf.Max(60, Screen.currentResolution.refreshRate);
+    }
+
+
 }

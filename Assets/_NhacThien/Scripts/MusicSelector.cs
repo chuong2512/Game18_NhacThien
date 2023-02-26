@@ -33,9 +33,10 @@ public class MusicSelector : MonoBehaviour
 
     void OnEnable()
     {
+        /////////////////////////////////////////////////////////////////////////
         gameData = GameDataManager.Instance;
         playerData = gameData.playerData;
-
+        /////////////////////////////////////////////////////////////////////////
         diamonds.text = "" + playerData.intDiamond;
         currentMusic = playerData.currentSong;
         if (currentMusic > -1)

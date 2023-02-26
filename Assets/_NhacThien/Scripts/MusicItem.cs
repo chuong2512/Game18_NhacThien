@@ -9,16 +9,9 @@ public class MusicItem : MonoBehaviour
     public Button button;
     public GameObject lockObj, chooseObj;
 
-    public void Choose()
-    {
-        chooseObj.SetActive(true);
-    }
-
-    public void UnChoose()
-    {
-        chooseObj.SetActive(false);
-    }
-
+    /// <summary>
+    /// ////////////////////////////////////////////
+    /// </summary>
     public void Init(Sprite sprite, int id, MusicSelector musicSelector, string name)
     {
         iconImage.sprite = sprite;
@@ -26,6 +19,25 @@ public class MusicItem : MonoBehaviour
         button.onClick.AddListener(() => { musicSelector.ChooseMusic(id); });
     }
 
+    /// <summary>
+    /// ////////////////////////////////////////////
+    /// </summary>
+    public void Choose()
+    {
+        chooseObj.SetActive(true);
+    }
+
+    /// <summary>
+    /// ////////////////////////////////////////////
+    /// </summary>
+    public void UnChoose()
+    {
+        chooseObj.SetActive(false);
+    }
+
+    /// <summary>
+    /// ////////////////////////////////////////////
+    /// </summary>
     public void Unlock()
     {
         lockObj.SetActive(false);

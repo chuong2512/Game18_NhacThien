@@ -10,6 +10,9 @@ public class AudioManager : Singleton<AudioManager>
     public AudioSource musicSource;
     private SongSO _songSo;
 
+    /// <summary>
+    /// ////////////////////////////////////////////
+    /// </summary>
     public Timer timer;
 
     protected override void Awake()
@@ -20,21 +23,9 @@ public class AudioManager : Singleton<AudioManager>
         musicSource.loop = true;
     }
 
-    public void ChangeVolume(float value)
-    {
-        musicSource.volume = value;
-    }
-
-    public void Stop()
-    {
-        musicSource.Stop();
-    }
-
-    public void Continue()
-    {
-        musicSource.Play();
-    }
-
+    /// <summary>
+    /// ////////////////////////////////////////////
+    /// </summary>
     void Update()
     {
         if (musicSource.isPlaying)
@@ -47,15 +38,29 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-
+    /// <summary>
+    /// ////////////////////////////////////////////
+    /// </summary>
     public void TurnMusicOff()
     {
         ChangeVolume(0.0f);
     }
 
+    /// <summary>
+    /// ////////////////////////////////////////////
+    /// </summary>
     public void TurnMusicOn()
     {
         ChangeVolume(1.0f);
+    }
+
+    /// <summary>
+    /// ////////////////////////////////////////////
+    /// </summary>
+    public void PlaySong(int id)
+    {
+        musicSource.clip = _songSo.GetSongWithID(id).song;
+        musicSource.Play();
     }
 
     public void Play()
@@ -71,9 +76,18 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    public void PlaySong(int id)
+    public void ChangeVolume(float value)
     {
-        musicSource.clip = _songSo.GetSongWithID(id).song;
+        musicSource.volume = value;
+    }
+
+    public void Stop()
+    {
+        musicSource.Stop();
+    }
+
+    public void Continue()
+    {
         musicSource.Play();
     }
 }

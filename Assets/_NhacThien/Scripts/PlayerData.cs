@@ -46,12 +46,13 @@ public class PlayerData : BaseData
     public void AddDiamond(int a)
     {
         intDiamond += a;
-
+        /////////////////////////////////////////////////////////////////////////
         Save();
     }
 
     public bool CheckCanUnlock()
     {
+        /////////////////////////////////////////////////////////////////////////
         return intDiamond >= Constant.priceUnlockSong;
     }
     public bool CheckLock(int id)
@@ -61,6 +62,7 @@ public class PlayerData : BaseData
 
     public void Unlock(int id)
     {
+        /////////////////////////////////////////////////////////////////////////
         if (!listSongs[id])
         {
             listSongs[id] = true;
